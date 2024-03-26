@@ -1,0 +1,25 @@
+/* .navbar {
+  background: linear-gradient(to right, #beb0ffad, #eee4ee);
+} */
+.item_links {
+  color: #e4d9ef !important;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.brand {
+  font-weight: 700;
+  margin-left: 1rem;
+}
+.nav_img {
+  margin: 0;
+  height: 50px;
+  border-radius: 50px;
+  margin-left: 1rem;
+}
+
+.item_links:hover {
+  color: rgb(111, 35, 182);
+}
+.navbar {
+  background-color: #000000cb;
+}

@@ -1,0 +1,156 @@
+<h3 class="bng-dark m-5 mb-2">Add New Plan</h3>
+<hr width="300px" />
+<form #addPlanForm="ngForm" (ngSubmit)="addPlan()" class="m-2">
+  <div class="form-group">
+    <label for="title" class="text-dark ">Plan Name</label>
+    <input
+      type="text"
+      class="form-control mb-2"
+      id="title"
+      name="title"
+      maxlength="40"
+      minlength="5"
+      [(ngModel)]="plans.newPlanName"
+      placeholder="Enter Plan Name"
+      #titleInput="ngModel"
+      required
+      [ngClass]="{
+        'is-invalid':
+          (titleInput.touched || titleInput.dirty) && !titleInput.valid
+      }"
+    />
+    <div
+      *ngIf="titleInput.invalid && (titleInput.touched || titleInput.dirty)"
+      class="invalid-feedback"
+    >
+      Please provide a valid title.
+    </div>
+    <span class="invalid-feedback">
+      @if(titleInput.errors?.['minlength']){
+      <span style="color: #8119db">Minimum length is 5 characters</span>
+      } @if(titleInput.errors?.['maxlength']){
+      <span style="color: #8119db">Maximum length is 40 characters</span>
+      }
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      class="form-control mb-2"
+      id="description"
+      name="description"
+      [(ngModel)]="plans.newPlanDescription"
+      placeholder="Enter description"
+      required
+      maxlength="150"
+      minlength="5"
+      #descriptionInput="ngModel"
+      [ngClass]="{
+        'is-invalid':
+          (descriptionInput.touched || descriptionInput.dirty) &&
+          !descriptionInput.valid
+      }"
+    ></textarea>
+    <div
+      *ngIf="
+        descriptionInput.invalid &&
+        (descriptionInput.touched || descriptionInput.dirty)
+      "
+      class="invalid-feedback"
+    >
+      Please provide a valid description.
+    </div>
+    <span class="invalid-feedback">
+      @if(descriptionInput.errors?.['minlength']){
+      <span style="color: #8119db">Minimum length is 5 characters</span>
+      } @if(descriptionInput.errors?.['maxlength']){
+      <span style="color: #8119db">Maximum length is 150 characters</span>
+      }
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="fee">Price (EGP)</label>
+    <input
+      type="number"
+      class="form-control mb-2"
+      id="fee"
+      name="fee"
+      [(ngModel)]="plans.newPlanFee"
+      placeholder="Enter Price"
+      required
+      min="0"
+      #feeInbut="ngModel"
+      [ngClass]="{
+        'is-invalid': (feeInbut.touched || feeInbut.dirty) && !feeInbut.valid
+      }"
+    />
+    <div
+      *ngIf="feeInbut.invalid && (feeInbut.touched || feeInbut.dirty)"
+      class="invalid-feedback"
+    >
+      Please provide a valid fee.
+    </div>
+    @if(feeInbut.errors?.['min']){
+    <span style="color: #8119db">fee must be a positive number</span>
+    }
+  </div>
+
+
+<!-- 
+
+  <div class="form-group">
+    <label for="Features" class="text-dark ">Plan Features</label>
+    <input
+      type="text"
+      class="form-control mb-2"
+      id="Features"
+      name="Features"
+      [(ngModel)]="plans.newfeatures"
+      placeholder="Enter Plan Features"
+      #FeaturesInput="ngModel"
+      required
+      [ngClass]="{
+        'is-invalid':
+          (FeaturesInput.touched || FeaturesInput.dirty) && !FeaturesInput.valid
+      }"
+    />
+    <div
+      *ngIf="FeaturesInput.invalid && (FeaturesInput.touched || FeaturesInput.dirty)"
+      class="invalid-feedback"
+    >
+      Please provide a valid features.
+    </div>
+  </div> -->
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5 mb-3">
+        <div class="mb-3">
+          <label for="profilePicture" class="form-label">Plan Picture</label>
+          <input
+            type="file"
+            class="form-control form-control-lg"
+            id="profilePicture"
+            name="profilePicture"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+          />
+          <div id="profilePictureHelp" class="form-text">
+            Choose a plan picture to upload.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary mt-3"
+    [disabled]="addPlanForm.invalid"
+    style="background-color: #8119db"
+  >
+    Create
+  </button>
+</form>

@@ -1,0 +1,39 @@
+
+<div class="row" style="margin: 0px;">
+<table class="table table-hover table-centered">
+  <thead>
+      <tr>
+        <th>Plan Title</th>
+        <th>Price</th>
+        <th>Plan Details</th>
+        <th>Delete Plan</th>
+      </tr>
+  </thead>
+  <tbody>
+    @for (plan of this.plans; track plan._id) {
+      <tr>
+        <td>{{ plan.title }}</td>
+        <td>{{ plan.fee }}</td>
+        <td>
+          <button class="btn btn-success"
+          [routerLink]="['details', plan._id]"
+          style="background-color: #8119db"
+          >
+          Details
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger"
+          (click)="deletePlan(plan._id)"
+          >
+          Delete
+        </button>
+        </td>
+      </tr>
+      }
+  </tbody>
+</table>
+</div>
+
+<router-outlet></router-outlet>
+

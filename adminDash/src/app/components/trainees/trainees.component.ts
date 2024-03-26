@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+import { TraineesService } from '../../services/trainees/trainees.service';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-trainees',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './trainees.component.html',
+  styleUrl: './trainees.component.scss',
+})
+export class TraineesComponent implements OnInit {
+  trainees: any;
+  totalPages: number = 0;
+  currentPage: number = 1;
+
+  constructor(private traineesSer: TraineesService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.fetchTrainees(this.currentPage);
+  }
+
+  fetchTrainees(page: number) {
+    this.traineesSer.getTraineesPaginated(page).subscribe((data: any) => {
+      this.trainees = data.clients;
+      this.totalPages = data.totalPages;
+      this.currentPage = data.currentPage;
+    });
+  }
+
+  onDetailsClick(traineeID: string) {
+    this.router.navigate(['trainees/details', traineeID]);
+  }
+
+  deleteTrainee(id: string) {
+    if (confirm("Are you sure you want to delete this trainee?")) {
+      this.traineesSer.deleteTrainee(id).subscribe((response: any) => {
+        if (response.message === 'user Deleted') {
+          // Fetch trainees for the current page after deletion
+          this.fetchTrainees(this.currentPage);
+        } else {
+          console.error('Unexpected deletion response:', response);
+        }
+      });
+    }
+  }
+
+  changePage(newPage: number) {
+    this.fetchTrainees(newPage);
+  }
+
+  generatePages(totalPages: number): number[] {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }}

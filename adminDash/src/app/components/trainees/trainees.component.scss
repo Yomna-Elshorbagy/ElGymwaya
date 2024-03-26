@@ -1,0 +1,77 @@
+.container {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table tbody tr td {
+  vertical-align: top;
+  padding: 15px;
+}
+
+.table tbody tr td:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table tbody tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.table tbody tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.table img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+
+/* Add this CSS to your component's CSS file or styles.scss */
+
+.page-item {
+  display: inline-block; /* Display buttons in a row */
+  margin-right: 5px; /* Adjust margin between buttons */
+}
+
+.page-link {
+  color: #333; /* Text color */
+  background-color: #fff; /* Background color */
+  border: 1px solid #ccc; /* Border color */
+  padding: 6px 12px; /* Padding */
+  border-radius: 4px; /* Border radius */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.page-link:hover {
+  background-color: #f0f0f0; /* Hover background color */
+}
+
+.page-item.disabled .page-link {
+  color: #999; /* Disabled text color */
+  pointer-events: none; /* Disable pointer events */
+}
+
+.page-item.disabled .page-link:hover {
+  background-color: #fff; /* Disabled hover background color */
+}

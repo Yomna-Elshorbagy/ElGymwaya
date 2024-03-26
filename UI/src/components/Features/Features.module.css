@@ -1,0 +1,25 @@
+.icon {
+  background-color: rgba(158, 78, 233, 0.993);
+  border-radius: 50%;
+  padding: 16px;
+  display: inline-block;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.cardBody {
+  transition: transform 0.3s ease-in-out;
+}
+
+.cardBody:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cardSlider {
+  height: 300px;
+}
+
+.cardBody {
+  background-color: #474747;
+  color: #d7d0c4;
+  border-bottom: 10px solid #9d4ee8;
+}
